@@ -1,27 +1,13 @@
-from flask import Flask, render_template, request
-import pickle
-from feature_extraction import extract_features_from_url
+Copyright 2025 Sahil Raj
 
-# Load the model
-with open('model/phishing_model.pkl', 'rb') as f:
-    model = pickle.load(f)
+All Rights Reserved.
 
-app = Flask(__name__)
+This software and associated documentation files (the "Software") are the exclusive property of Sahil Raj.
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    result = None
-    if request.method == 'POST':
-        url = request.form['url']
-        features = extract_features_from_url(url)
-        result = model.predict([features])[0]
-        if result==1:
-            result= "  Does Not Look Secure  "
-        else:
-            result= " Looks Secure! "
-        print("Extracted Features:", features)
-        print("Prediction:", result)
-    return render_template('index.html', result=result)
+Permission is NOT granted to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, in whole or in part, without the prior explicit written permission from the author.
 
-if __name__ == '__main__':
-    app.run(debug=True)
+Unauthorized reproduction or redistribution of this Software is prohibited by law and may result in severe civil and criminal penalties.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+
+For permissions, inquiries, or licensing requests, please contact: 2006rajsahil@gmail.com
